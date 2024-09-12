@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Uplift.DataAccess.Data.Repository
 {
-    public class Repository<T>
+    poblic class Repository<T>:
     {
     }
 }
