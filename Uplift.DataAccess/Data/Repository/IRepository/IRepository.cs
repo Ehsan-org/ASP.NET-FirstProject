@@ -22,8 +22,10 @@ namespace Uplift.DataAccess.Data.Repository.IRepository
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeproperties = null
             );
+        void Add(T entity);
 
         void Remove(int id);
+
         void Remove(T entity);
     }
 }
