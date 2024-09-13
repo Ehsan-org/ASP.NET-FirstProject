@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Uplift.Models;
 
 namespace Uplift.DataAccess.Data
 {
@@ -8,5 +9,6 @@ namespace Uplift.DataAccess.Data
             : base(options)
         {
         }
+        public DbSet<Category> Category { get; set; }
     }
 }
