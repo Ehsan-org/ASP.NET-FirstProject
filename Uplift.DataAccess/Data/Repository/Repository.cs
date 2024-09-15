@@ -30,7 +30,7 @@ namespace Uplift.DataAccess.Data.Repository
             return dbSet.Find(id);
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeproperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;
 
@@ -38,23 +38,23 @@ namespace Uplift.DataAccess.Data.Repository
             {
                 query = query.Where(filter);
             }
-            //incloude properties will be comma seperated
+            //include properties will be comma seperated
             if (includeProperties != null)
-            { 
-                foreach(var incloudProperty in incloudeProperties.Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries))
+            {
+                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = query.Include(incloudeProperty);
+                    query = query.Include(includeProperty);
                 }
             }
 
-            if(orderBy != null)
+            if (orderBy != null)
             {
                 return orderBy(query).ToList();
             }
             return query.ToList();
         }
 
-        public T GetFirstOrDefult(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeproperties = null)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;
 
@@ -62,12 +62,12 @@ namespace Uplift.DataAccess.Data.Repository
             {
                 query = query.Where(filter);
             }
-            //incloude properties will be comma seperated
+            //include properties will be comma seperated
             if (includeProperties != null)
             {
-                foreach (var incloudProperty in incloudeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = query.Include(incloudeProperty);
+                    query = query.Include(includeProperty);
                 }
             }
 
@@ -77,12 +77,16 @@ namespace Uplift.DataAccess.Data.Repository
         public void Remove(int id)
         {
             T entityToRemove = dbSet.Find(id);
-            Remove(entityToRemove);
+            if (entityToRemove != null)
+            {
+                Remove(entityToRemove);
+            }
         }
 
         public void Remove(T entity)
         {
             dbSet.Remove(entity);
         }
+
     }
 }

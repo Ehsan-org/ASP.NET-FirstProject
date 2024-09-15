@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Uplift.Models;
 
 namespace Uplift.DataAccess.Data.Repository.IRepository
 {
-    internal interface ICategoryRepository
+     public interface ICategoryRepository : IRepository<Category>
     {
+        IEnumerable<SelectListItem> GetCategoryListForDropDown();
+
+        void Update(Category category);
     }
 }

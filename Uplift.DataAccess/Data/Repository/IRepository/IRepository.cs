@@ -12,15 +12,13 @@ namespace Uplift.DataAccess.Data.Repository.IRepository
         T Get(int id);
 
         IEnumerable<T> GetAll(
-            Expression<Func<T,bool>> filter = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            string includeproperties = null 
-
-            );
-        T GetFirstOrDefult(
             Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            string includeproperties = null
+            string includeProperties = null
+            );
+        T GetFirstOrDefault(
+            Expression<Func<T, bool>> filter = null,
+            string includeProperties = null
             );
         void Add(T entity);
 
