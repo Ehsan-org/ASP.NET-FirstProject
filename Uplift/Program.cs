@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Uplift.DataAccess.Data;
 
+// Test for Conflicts 3
 namespace Uplift
 {
     public class Program
@@ -19,7 +20,7 @@ namespace Uplift
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
-
+            // Test for Conflicts 2
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -50,3 +51,4 @@ namespace Uplift
         }
     }
 }
+// Test for Conflicts 1
