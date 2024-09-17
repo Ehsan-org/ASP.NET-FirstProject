@@ -14,6 +14,7 @@ namespace Uplift
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
+            // Test for Conflicts 4
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -27,6 +28,7 @@ namespace Uplift
             {
                 app.UseMigrationsEndPoint();
             }
+            // Test for Conflicts 5
             else
             {
                 app.UseExceptionHandler("/Home/Error");
