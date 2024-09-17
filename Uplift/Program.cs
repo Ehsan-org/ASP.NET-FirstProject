@@ -21,6 +21,7 @@ namespace Uplift
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
             // Test for Conflicts 2
+            //AddedNewTextwhileSolvingConflict
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
