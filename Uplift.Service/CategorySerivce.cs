@@ -19,6 +19,7 @@ namespace Uplift.Service
         public void Create(Category model)
         {
             _unitOfWork.Category.Add(model);
+            _unitOfWork.Save();
         }
     }
 }
