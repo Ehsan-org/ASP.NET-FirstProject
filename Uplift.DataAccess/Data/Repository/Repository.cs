@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using Uplift.DataAccess.Data.Repository.IRepository;
 
 namespace Uplift.DataAccess.Data.Repository
@@ -54,7 +49,7 @@ namespace Uplift.DataAccess.Data.Repository
             return query.ToList();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;
 
@@ -73,7 +68,6 @@ namespace Uplift.DataAccess.Data.Repository
 
             return query.FirstOrDefault();
         }
-
         public void Remove(int id)
         {
             T entityToRemove = dbSet.Find(id);
