@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Uplift.DataAccess.Data.Repository.IRepository;
+﻿using Uplift.DataAccess.Data.Repository.IRepository;
 using Uplift.Models;
 
 namespace Uplift.Service
@@ -11,6 +6,7 @@ namespace Uplift.Service
     public class CategoryService : ICategoryService
     {
         private readonly IUnitOfWork _unitOfWork;
+
         public CategoryService(IUnitOfWork unitOfWork) 
         {
             _unitOfWork = unitOfWork;
@@ -20,6 +16,10 @@ namespace Uplift.Service
         {
             _unitOfWork.Category.Add(model);
             _unitOfWork.Save();
+        }
+        public IEnumerable<Category> GetAllCategories()
+        {
+            return _unitOfWork.Category.GetAll();
         }
     }
 }
