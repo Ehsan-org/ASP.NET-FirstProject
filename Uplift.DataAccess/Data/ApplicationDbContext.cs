@@ -1,4 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿//using Microsoft.EntityFrameworkCore;
+//using Uplift.Models;
+
+//namespace Uplift.DataAccess.Data
+//{
+//    public class ApplicationDbContext : DbContext
+//    {
+//        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+//            : base(options)
+//        {
+//        }
+//        public DbSet<Category> Category { get; set; }
+//    }
+//}
+using Microsoft.EntityFrameworkCore;
 using Uplift.Models;
 
 namespace Uplift.DataAccess.Data
@@ -9,6 +23,6 @@ namespace Uplift.DataAccess.Data
             : base(options)
         {
         }
-        public DbSet<Category> Category { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
