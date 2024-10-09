@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using Uplift.DataAccess.Data;
 using Uplift.DataAccess.Data.Repository;
@@ -16,11 +15,11 @@ namespace Uplift.Api
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Uplift.DataAccess")));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllers();
             services.AddScoped<ICategoryService, CategoryService>();
-
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
@@ -41,7 +40,6 @@ namespace Uplift.Api
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
