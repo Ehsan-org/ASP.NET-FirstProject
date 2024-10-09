@@ -17,17 +17,17 @@ namespace Uplift.Api.Controllers
 
         // GET: api/Category
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        public ActionResult<IEnumerable<Category>> GetCategories()
         {
-            var categories = await _categoryService.GetAllCategoriesAsync();
+            var categories = _categoryService.GetAllCategories();
             return Ok(categories);
         }
 
         // GET: api/Category/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        public ActionResult<Category> GetCategory(int id)
         {
-            var category = await _categoryService.GetCategoryByIdAsync(id);
+            var category = _categoryService.GetCategoryById(id);
             if (category == null)
             {
                 return NotFound();
@@ -37,23 +37,19 @@ namespace Uplift.Api.Controllers
 
         // POST: api/Category
         [HttpPost]
-        public async Task<ActionResult<Category>> CreateCategory([FromBody]Category category)
+        public ActionResult CreateCategory([FromBody] Category category)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            await _categoryService.CreateCategoryAsync(new Category
-            {
-                Name = category.Name,
-                DisplayOrder = category.DisplayOrder
-            });
+            _categoryService.Create(category);
             return CreatedAtAction(nameof(GetCategory), new { id = category.Id }, category);
         }
 
         // PUT: api/Category/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCategory(int id, [FromBody] Category category)
+        public IActionResult UpdateCategory(int id, [FromBody] Category category)
         {
             if (id != category.Id)
             {
@@ -63,7 +59,7 @@ namespace Uplift.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var result = await _categoryService.UpdateCategoryAsync(category);
+            var result = _categoryService.UpdateCategory(category);
             if (!result)
             {
                 return NotFound();
@@ -73,9 +69,9 @@ namespace Uplift.Api.Controllers
 
         // DELETE: api/Category/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategory(int id)
+        public IActionResult DeleteCategory(int id)
         {
-            var result = await _categoryService.DeleteCategoryAsync(id);
+            var result = _categoryService.DeleteCategory(id);
             if (!result)
             {
                 return NotFound();

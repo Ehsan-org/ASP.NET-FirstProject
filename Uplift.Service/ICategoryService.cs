@@ -1,25 +1,14 @@
-﻿//using Uplift.Models;
-
-//namespace Uplift.Service
-//{
-//    public interface ICategoryService
-//    {
-//        void Create(Category category);
-
-//        IEnumerable<Category> GetAllCategories();
-//    }     
-//}
-
-using Uplift.Models;
+﻿using Uplift.Models;
+using System.Collections.Generic;
 
 namespace Uplift.Service
 {
     public interface ICategoryService
     {
-        Task<IEnumerable<Category>> GetAllCategoriesAsync();
-        Task<Category> GetCategoryByIdAsync(int id);
-        Task CreateCategoryAsync(Category category);
-        Task<bool> UpdateCategoryAsync(Category category);
-        Task<bool> DeleteCategoryAsync(int id);
+        void Create(Category category);
+        IEnumerable<Category> GetAllCategories();
+        Category GetCategoryById(int id);
+        bool UpdateCategory(Category category);
+        bool DeleteCategory(int id);
     }
 }
